@@ -9,7 +9,7 @@ import (
 
 const (
 	encryptedFile1 = "Test1.txt"     // Şifrelenmiş dosya adı
-	encryptedFile2 = "MRT haber.docx"
+	encryptedFile2 = "Word.docx"
 	decryptedFile1 = "decrypted.txt" // Çözülmüş dosya adı
 	decryptedFile2 = "decrypted.docx"
 )
@@ -38,10 +38,9 @@ func main() {
 	ciphertext = ciphertext[aes.BlockSize:]
 
 	mode := cipher.NewCBCDecrypter(block, iv)
-	decryptedText := make([]byte, len(ciphertext)) // Çözülen metni tutacak byte dizisi
+	decryptedText := make([]byte, len(ciphertext)) 
 	mode.CryptBlocks(decryptedText, ciphertext)
 
-	// Padding'i kaldıralım
 	padding := int(decryptedText[len(decryptedText)-1])
 	decryptedText = decryptedText[:len(decryptedText)-padding]
 
@@ -64,7 +63,6 @@ func main() {
 	decryptedText = make([]byte, len(ciphertext)) // Çözülen metni tutacak byte dizisi
 	mode.CryptBlocks(decryptedText, ciphertext)
 
-	// Padding'i kaldıralım
 	padding = int(decryptedText[len(decryptedText)-1])
 	decryptedText = decryptedText[:len(decryptedText)-padding]
 
